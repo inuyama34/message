@@ -1,0 +1,6 @@
+<h1>id:<%=@post.id%>の投稿詳細ページ</h1>
+
+<p><%= @post.content %></p>
+<%=link_to "投稿一覧に戻る",posts_path%>
+<%= link_to 'このpostを編集する', edit_post_path(@post) %>
+<%= link_to 'このメッセージを削除する', @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
