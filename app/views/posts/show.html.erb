@@ -1,5 +1,6 @@
 <h1>id:<%=@post.id%>の投稿詳細ページ</h1>
 
+<P><%=@post.title%></p>
 <p><%= @post.content %></p>
 <%=link_to "投稿一覧に戻る",posts_path%>
 <%= link_to 'このpostを編集する', edit_post_path(@post) %>
