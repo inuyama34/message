@@ -5,5 +5,6 @@
   <li><%= link_to post.id, post %> : <%= post.title %> &gt; <%= post.content %></li>
   <% end %>
 </ul>
+<%= paginate @posts %>
 
 <%= link_to '新規メッセージの投稿', new_post_path %>
