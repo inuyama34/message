@@ -1,7 +1,19 @@
-<h1>id:<%=@post.id%>の投稿詳細ページ</h1>
+<h1>id: <%= @post.id %> のpost詳細ページ</h1>
 
-<P><%=@post.title%></p>
-<p><%= @post.content %></p>
-<%=link_to "投稿一覧に戻る",posts_path%>
-<%= link_to 'このpostを編集する', edit_post_path(@post) %>
-<%= link_to 'このメッセージを削除する', @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' } %>
+<table class="table table-bordered">
+  <tr>
+    <th>id</th>
+    <td><%= @post.id %></td>
+  </tr>
+  <tr>
+    <th>title</th>
+    <td><%= @post.title %></td>
+  </tr>
+  <tr>
+    <th>post</th>
+    <td><%= @post.content %></td>
+  </tr>
+</table>
+
+<%= link_to 'このpostを編集する', edit_post_path(@post), class: 'btn btn-light' %>
+<%= link_to 'このpostを削除する', @post, method: :delete, data: { confirm: '本当に削除してよろしいですか？' }, class: 'btn btn-danger' %>
