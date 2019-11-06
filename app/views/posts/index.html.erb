@@ -24,4 +24,9 @@
   </div>
 <% end %>
 
-<%= link_to '新規メッセージの投稿', new_post_path, class: "btn btn-primary" %>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <%= link_to '新規メッセージの投稿', new_post_path, class: "btn btn-primary" %>
+<% else %>
+<%end%>
+
