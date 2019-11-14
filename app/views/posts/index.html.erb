@@ -1,6 +1,10 @@
-<h1>メッセージ一覧</h1>
+<% if logged_in? %>
+  <p>ログイン完了ユーザ: <%= current_user.name %></p>
+  <%= link_to '新規メッセージの投稿', new_post_path, class: "btn btn-primary" %>
+<% else %>
+<%end%>
 
-<% if @posts.any? %>
+<h1>メッセージ一覧</h1>
   <table class="table table-striped">
     <thead>
       <tr>
@@ -22,11 +26,5 @@
   <div>
     <%= paginate @posts %>
   </div>
-<% end %>
 
-<% if logged_in? %>
-  <p>ログイン完了ユーザ: <%= current_user.name %></p>
-  <%= link_to '新規メッセージの投稿', new_post_path, class: "btn btn-primary" %>
-<% else %>
-<%end%>
 

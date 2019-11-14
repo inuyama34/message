@@ -1,18 +1,21 @@
 class PostsController < ApplicationController
+  before_action :require_user_logged_in
+  before_action :correct_user, only: [:destroy,:edit,:show,:update]
+  
   def index
-    @posts=Post.all.order(id: :desc).page(params[:page]).per(5)
+        @posts = current_user.posts.order(id: :desc).page(params[:page])
   end
 
   def show
-     @post=Post.find(params[:id])
+   
   end
 
   def new
-    @post=Post.new
+    @post = current_user.posts.build
   end
 
   def create
-   @post= Post.new(post_params)
+   @post = current_user.posts.build(post_params)
     if @post.save
      flash[:success] ="Postが正常に投稿されました"
      redirect_to @post
@@ -23,7 +26,7 @@ class PostsController < ApplicationController
   end
 
   def edit
-    @post=Post.find(params[:id])
+ 
   
   end
 
@@ -50,6 +53,14 @@ class PostsController < ApplicationController
 
   # Strong Parameter
   def post_params
-    params.require(:post).permit(:content,:title)
+    params.require(:post).permit(:content,:title,:img, :remove_img)
   end
 end
+
+def correct_user
+    @post= current_user.posts.find_by(id: params[:id])
+    unless @post
+      redirect_to root_url
+    end
+end
+
